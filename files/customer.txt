@@ -1,0 +1,26 @@
+OrderID	CustomerName	ShipperName
+10248	Wilman Kala	Federal Shipping
+10249	Tradição Hipermercados	Speedy Express
+10250	Hanari Carnes	United Package
+10251	Victuailles en stock	Speedy Express
+10252	Suprêmes délices	United Package
+10253	Hanari Carnes	United Package
+10254	Chop-suey Chinese	United Package
+10255	Richter Supermarkt	Federal Shipping
+10256	Wellington Importadora	United Package
+10257	HILARIÓN-Abastos	Federal Shipping
+10258	Ernst Handel	Speedy Express
+10259	Centro comercial Moctezuma	Federal Shipping
+10260	Old World Delicatessen	Speedy Express
+10261	Que Delícia	United Package
+10262	Rattlesnake Canyon Grocery	Federal Shipping
+10263	Ernst Handel	Federal Shipping
+10264	Folk och fä HB	Federal Shipping
+10265	Blondel père et fils	Speedy Express
+10266	Wartian Herkku	Federal Shipping
+10267	Frankenversand	Speedy Express
+10268	GROSELLA-Restaurante	Federal Shipping
+10269	White Clover Markets	Speedy Express
+10270	Wartian Herkku	Speedy Express
+10271	Split Rail Beer & Ale	United Package
+
