@@ -190,3 +190,10 @@ item-34 Geitost has affordable price!->2.5$
 ```bash
 awk 'BEGIN { n = 1; while (n <= 10) { if(n > 5) break; print n; n++ } }'
 ```
+### subdomain maker with awk for a specific site.
+
+`$1>0` filter empty fields. 
+
+```bash
+awk '$1>0 {printf "%s.mrcatdev.com\n", $1}' ./files/sub-wordlist
+```
