@@ -7,5 +7,7 @@
 |4		|2022-11-02| SQLi		| [SQLi](./sql-injection.md) (Blind Method - Boolean and Time)|
 |5		|2022-11-03| SQLi		| [SQLi](./sql-injection.md) (Blind Method and OAST)|
 |6		|2022-11-06| SQLi		| [SQLi](./sql-injection.md) (Work with sql and php)|
+|7		|2022-11-09| Bash		| [sed](./sed.md) (Work with sed)|
+
 
 
