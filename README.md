@@ -8,6 +8,14 @@
 |5		|2022-11-03| SQLi		| [SQLi](./sql-injection.md) (Blind Method and OAST)|
 |6		|2022-11-06| SQLi		| [SQLi](./sql-injection.md) (Work with sql and php)|
 |7		|2022-11-09| Bash		| [sed](./sed.md) (Work with sed)|
+|8		|2022-11-10| Bash		| [awk](./awk.md) (Work with awk)|
+|9		|2022-11-11| CI  		| [CI](./ci.md) (Command Injection)|
+
+
+
+
+
+
 
 
 
