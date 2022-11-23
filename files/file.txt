@@ -1,2 +1,3 @@
-Matz's Law:
-	A conclusion is the place where you got tired of thinking.
+<sel> need help: my first packet to my provider gets lost :-(
+<netgod> sel:  don't send the first one, start with #2
+* netgod is kidding
