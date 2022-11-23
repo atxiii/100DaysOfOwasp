@@ -1,2 +1,2 @@
-Price's Advice:
-	It's all a game -- play it to have fun.
+pos += screamnext[pos]  /* does this goof up anywhere? */
+		-- Larry Wall in util.c from the perl source code
