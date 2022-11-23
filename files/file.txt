@@ -1,3 +1,5 @@
-Command, n.:
-	Statement presented by a human and accepted by a computer in
-	such a manner as to make the human feel as if he is in control.
+* wolfie ponders how many debianites it takes to screw in a lightbulb
+<Viiru> wolfie: Somewhere around 600? One screw's the bulb, and the rest
+        flame him for doing it wrong.
+<part> wolfie: is the bulb free software?
+<Tv> Can we vote on whether to screw it or not?
