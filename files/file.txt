@@ -1,3 +1,1 @@
-If people concentrated on the really important things in life,
-there'd be a shortage of fishing poles.
-		-- Doug Larson
+<JHM> AIX - the Unix from the universe where Spock has a beard.
