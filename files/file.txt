@@ -1,5 +1,3 @@
-<Culus> And don't get me started on perl!
-<Culus> :>
-<shaleh> perl is beyond evil
-<jim> you don't know perl yet?
-<netgod> gotta love a language with no definable syntax
+Ferengi Rule of Acquisition #79:
+Beware of the Vulcan greed for knowledge.
+-- The Ferengi Rules of Acquisition (DS9 reference book)
