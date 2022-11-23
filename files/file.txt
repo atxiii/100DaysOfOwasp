@@ -1,2 +1,5 @@
-If you don't have a nasty obituary you probably didn't matter.
-		-- Freeman Dyson
+<Culus> And don't get me started on perl!
+<Culus> :>
+<shaleh> perl is beyond evil
+<jim> you don't know perl yet?
+<netgod> gotta love a language with no definable syntax
