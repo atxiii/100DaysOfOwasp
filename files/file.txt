@@ -1,2 +1,1 @@
-tmps_base = tmps_max;                /* protect our mortal string */
-		-- Larry Wall in stab.c from the perl source code
+To get back on your feet, miss two car payments.
