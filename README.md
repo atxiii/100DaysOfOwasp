@@ -10,6 +10,7 @@
 |7		| Bash		| [sed](./sed.md) (Work with sed)|
 |8		| Bash		| [awk](./awk.md) (Work with awk)|
 |9		| CI  		| [CI](./ci.md) (Command Injection)|
+|10		| BOM-DOM	| [BOM-DOM](./bom-dom.md) (BOM - DOM)|
 
 
 
