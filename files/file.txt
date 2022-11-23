@@ -1,2 +1,9 @@
-pos += screamnext[pos]  /* does this goof up anywhere? */
-		-- Larry Wall in util.c from the perl source code
+My own dear love, he is strong and bold
+	And he cares not what comes after.
+His words ring sweet as a chime of gold,
+	And his eyes are lit with laughter.
+He is jubilant as a flag unfurled --
+	Oh, a girl, she'd not forget him.
+My own dear love, he is all my world --
+	And I wish I'd never met him.
+		-- Dorothy Parker, part 1
