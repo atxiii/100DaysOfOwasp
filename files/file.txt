@@ -1,9 +1,3 @@
-The notion that science does not concern itself with first causes -- that it
-leaves the field to theology or metaphysics, and confines itself to mere
-effects -- this notion has no support in the plain facts.  If it could,
-science would explain the origin of life on earth at once--and there is
-every reason to believe that it will do so on some not too remote tomorrow.
-To argue that gaps in knowledge which will confront the seeker must be filled,
-not by patient inquiry, but by intuition or revelation, is simply to give
-ignorance a gratuitous and preposterous dignity....
-		-- H. L. Mencken, 1930
+Command, n.:
+	Statement presented by a human and accepted by a computer in
+	such a manner as to make the human feel as if he is in control.
