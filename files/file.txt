@@ -1,3 +1,1 @@
-"Regardless of the legal speed limit, your Buick must be operated at
-speeds faster than 85 MPH (140kph)."
-		-- 1987 Buick Grand National owners manual.
+Any program which runs right is obsolete.
