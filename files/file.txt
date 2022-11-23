@@ -1,1 +1,3 @@
-To get back on your feet, miss two car payments.
+> I'm an idiot..  At least this [bug] took about 5 minutes to find..
+Surely, Linus is talking about the kind of idiocy that others aspire to :-).
+		-- Bruce Perens in response to Linus Torvalds's
