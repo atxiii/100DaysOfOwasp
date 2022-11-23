@@ -1,0 +1,2 @@
+20 16 * * * bash ~/workspace/100DaysOfOwasp/files/push.sh
+
