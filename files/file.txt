@@ -1,14 +1,6 @@
-Briefly stated, the findings are that when presented with an array of
-data or a sequence of events in which they are instructed to discover
-an underlying order, subjects show strong tendencies to perceive order
-and causality in random arrays, to perceive a pattern or correlation
-which seems a priori intuitively correct even when the actual correlation
-in the data is counterintuitive, to jump to conclusions about the correct
-hypothesis, to seek and to use only positive or confirmatory evidence, to
-construe evidence liberally as confirmatory, to fail to generate or to
-assess alternative hypotheses, and having thus managed to expose themselves
-only to confirmatory instances, to be fallaciously confident of the validity
-of their judgments (Jahoda, 1969; Einhorn and Hogarth, 1978).  In the
-analyzing of past events, these tendencies are exacerbated by failure to
-appreciate the pitfalls of post hoc analyses.
-		-- A. Benjamin
+Divorce Assumption:
+	A form of Safety Net-ism, the belief that if a marriage
+doesn't work out, then there is no problem because partners can simply
+seek a divorce.
+		-- Douglas Coupland, "Generation X: Tales for an Accelerated
+		   Culture"
