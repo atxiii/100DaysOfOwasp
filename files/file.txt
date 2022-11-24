@@ -1,7 +1,17 @@
-Jack-and-Jill Party:
-	A Squire tradition; baby showers to which both men and
-women friends are invited as opposed to only women.  Doubled
-purchasing power of bisexual attendance brings gift values up to
-Eisenhower-era standards.
-		-- Douglas Coupland, "Generation X: Tales for an Accelerated
-		   Culture"
+I've built a better model than the one at Data General
+For data bases vegetable, animal, and mineral
+My OS handles CPUs with multiplexed duality;
+My PL/1 compiler shows impressive functionality.
+My storage system's better than magnetic core polarity,
+You never have to bother checking out a bit for parity;
+There isn't any reason to install non-static floor matting;
+My disk drive has capacity for variable formatting.
+
+I feel compelled to mention what I know to be a gloating point:
+There's lots of room in memory for variables floating-point,
+Which shows for input vegetable, animal, and mineral
+I've built a better model than the one at Data General.
+
+		-- Steve Levine, "A Computer Song" (To the tune of
+		   "Modern Major General", from "Pirates of Penzance",
+		   by Gilbert & Sullivan)
