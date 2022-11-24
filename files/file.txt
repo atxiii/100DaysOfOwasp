@@ -1,3 +1,1 @@
-> No manual is ever necessary.
-May I politely interject here: BULLSHIT.  That's the biggest Apple lie of all!
-	-- Discussion in comp.os.linux.misc on the intuitiveness of interfaces
+You can get there from here, but why on earth would you want to?
