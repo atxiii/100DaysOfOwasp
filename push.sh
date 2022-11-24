@@ -1,3 +1,3 @@
 #!/bin/bash
 bash ~/workspace/100DaysOfOwasp/files/committed.sh
-git push origin main
+git -C /home/mrcat/workspace/100DaysOfOwasp/ push origin main
