@@ -1,2 +1,4 @@
-I poured spot remover on my dog.  Now he's gone.
-		-- Steven Wright
+<muggles> i'm trying to convince some netcom admins i know to convert
+          to Debian from RH, netgod, but they are DAMN stubborn
+<muggles> why RH users so damned hard headed?
+<Espy> it's the hat
