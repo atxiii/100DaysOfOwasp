@@ -1,2 +1,21 @@
-Anybody who doesn't cut his speed at the sight of a police car is
-probably parked.
+Lemma:  All horses are the same color.
+Proof (by induction):
+	Case n = 1: In a set with only one horse, it is obvious that all
+	horses in that set are the same color.
+	Case n = k: Suppose you have a set of k+1 horses.  Pull one of these
+	horses out of the set, so that you have k horses.  Suppose that all
+	of these horses are the same color.  Now put back the horse that you
+	took out, and pull out a different one.  Suppose that all of the k
+	horses now in the set are the same color.  Then the set of k+1 horses
+	are all the same color.  We have k true => k+1 true; therefore all
+	horses are the same color.
+Theorem: All horses have an infinite number of legs.
+Proof (by intimidation):
+	Everyone would agree that all horses have an even number of legs.  It
+	is also well-known that horses have forelegs in front and two legs in
+	back.  4 + 2 = 6 legs, which is certainly an odd number of legs for a
+	horse to have!  Now the only number that is both even and odd is
+	infinity; therefore all horses have an infinite number of legs.
+	However, suppose that there is a horse somewhere that does not have an
+	infinite number of legs.  Well, that would be a horse of a different
+	color; and by the Lemma, it doesn't exist.
