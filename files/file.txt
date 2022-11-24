@@ -1,1 +1,2 @@
-Use in well-ventilated area.
+Reporter:   "How did you like school when you were growing up, Yogi?"
+Yogi Berra: "Closed."
