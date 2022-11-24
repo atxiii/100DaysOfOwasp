@@ -1,1 +1,5 @@
-Don't drink when you drive -- you might hit a bump and spill it.
+"In the event of a perceived failing of the project leadership #debian is
+empowered to take drastic and descisive action to correct the failing,
+including by not limited to expelling officials, apointing new officials
+and generally abusing power"
+		-- proposed amendment to Debian Constitution
