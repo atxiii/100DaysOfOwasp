@@ -1,2 +1,9 @@
-There are times when truth is stranger than fiction and lunch time is one
-of them.
+transparent, adj.:
+	Being or pertaining to an existing, nontangible object.
+	"It's there, but you can't see it"
+		-- IBM System/360 announcement, 1964.
+
+virtual, adj.:
+	Being or pertaining to a tangible, nonexistent object.
+	"I can see it, but it's not there."
+		-- Lady Macbeth.
