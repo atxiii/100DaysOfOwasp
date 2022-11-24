@@ -1,3 +1,2 @@
-QOTD:
-	"This is a one line proof... if we start sufficiently far to the
-	left."
+There is no sincerer love than the love of food.
+		-- George Bernard Shaw
