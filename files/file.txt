@@ -1,4 +1,7 @@
-<muggles> i'm trying to convince some netcom admins i know to convert
-          to Debian from RH, netgod, but they are DAMN stubborn
-<muggles> why RH users so damned hard headed?
-<Espy> it's the hat
+	Phases of a Project:
+(1)	Exultation.
+(2)	Disenchantment.
+(3)	Confusion.
+(4)	Search for the Guilty.
+(5)	Punishment for the Innocent.
+(6)	Distinction for the Uninvolved.
