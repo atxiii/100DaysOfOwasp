@@ -1,9 +1,3 @@
-transparent, adj.:
-	Being or pertaining to an existing, nontangible object.
-	"It's there, but you can't see it"
-		-- IBM System/360 announcement, 1964.
-
-virtual, adj.:
-	Being or pertaining to a tangible, nonexistent object.
-	"I can see it, but it's not there."
-		-- Lady Macbeth.
+It is so stupid of modern civilisation to have given up believing in the
+devil when he is the only explanation of it.
+		-- Ronald Knox, "Let Dons Delight"
