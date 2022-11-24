@@ -1,1 +1,17 @@
-If your life was a horse, you'd have to shoot it.
+A comment on schedules:
+ Ok, how long will it take?
+   For each manager involved in initial meetings add one month.
+   For each manager who says "data flow analysis" add another month.
+   For each unique end-user type add one month.
+   For each unknown software package to be employed add two months.
+   For each unknown hardware device add two months.
+   For each 100 miles between developer and installation add one month.
+   For each type of communication channel add one month.
+   If an IBM mainframe shop is involved and you are working on a non-IBM
+      system add 6 months.
+   If an IBM mainframe shop is involved and you are working on an IBM
+      system add 9 months.
+Round up to the nearest half-year.
+--Brad Sherman
+By the way, ALL software projects are done by iterative prototyping.
+Some companies call their prototypes "releases", that's all.
