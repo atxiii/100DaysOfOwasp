@@ -894,6 +894,18 @@ create table people(id integer, name varchar(100), email varchar(100));
 #insert data 
 insert into people(id,name,email) values (1,'rick','rick@gmail.com');
 ```
+### Insert data to column
+
+```sql
+# let's say table name is users and column name is email. we want update id 1 
+update users set email = 'my@email.com' where id=1
+```
+
+### Replace data
+
+```sql
+update Users set email=replace(email,'old@email.com','new@email.com');
+```
 
 ### Connect to mysql with php and load file /etc/passwd with sql query
 
